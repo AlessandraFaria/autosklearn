@@ -11,21 +11,34 @@ auto-sklearn é um kit de ferramentas de aprendizado de máquina automatizado e 
 
 Encontre a documentação [here](http://automl.github.io/auto-sklearn/)
 
-## Automated Machine Learning em poucas linhas
+# Automated Machine Learning em poucas linhas
+## Instalação
+```python
+import sklearn.datasets
+from sklearn.metrics import accuracy_score
+from sklearn import svm
+import sklearn.model_selection
+import sklearn.datasets
+import sklearn.metrics
+import autosklearn.classification
+```
 
+## Execução
 ```python
 # configure auto-sklearn
 automl = autosklearn.classification.AutoSklearnClassifier(
           time_left_for_this_task=3600, # execute o auto-sklearn por no máximo x segundos
           per_run_time_limit=600, #, gastar no máximo Y segundos para cada modelo de treinamento
           )
-
-
 # train model(s)
 automl.fit(x_train, y_train)
 
 # evaluate
 y_hat = automl.predict(x_test)
+```
+## Métricas 
+
+```python
 test_acc = sklearn.metrics.accuracy_score(y_test, y_hat)
 test_report = sklearn.metrics.classification_report(y_test, y_hat)
 test_matrix = sklearn.metrics.confusion_matrix(y_test, y_hat)
@@ -42,7 +55,6 @@ print(automl.show_models())
 print("-------------------------------------------------------------------------")
 print(automl.get_models_with_weights())
 ```
-
 
 
 ## Publicações relevantes
